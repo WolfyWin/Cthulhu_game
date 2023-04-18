@@ -1,0 +1,75 @@
+###############################################################################
+#                        GITIGNORE                                            #
+###############################################################################
+
+### IDE ###
+.idea/
+.settings/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+ide-twig.json
+*.patch
+*.diff
+
+### Dossiers ### 
+node_modules/
+build/
+dist/
+coverage/
+backup/
+.lib/
+target/
+vendor/
+var/
+public/bundles/
+public/build/
+
+### Thumbnails ###
+._*
+
+### tmp ###
+*.tmp
+/tmp
+
+### Fichiers ###
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+todo.md
+.history
+.cache
+npm-debug.log
+yarn-error.log
+.phpunit.result.cache
+
+### Eslint ###
+.eslintcache
+
+
+### Yarn ###
+.yarn/*
+!.yarn/releases
+!.yarn/patches
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+### Node Patch ###
+# Serverless Webpack directories
+.webpack/
+
+### react ###
+.DS_*
+**/*.backup.*
+**/*.back.*
+
+.pnp.*
+
+assets/node_modules
+phpunit.xml
