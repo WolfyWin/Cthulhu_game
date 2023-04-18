@@ -13,9 +13,10 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
+        "nelmio/cors-bundle": "^2.3",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.19",
-        "sensio/framework-extra-bundle": "^6.1",
+        "sensio/framework-extra-bundle": "^6.2",
         "symfony/asset": "6.2.*",
         "symfony/console": "6.2.*",
         "symfony/doctrine-messenger": "6.2.*",
@@ -29,7 +30,7 @@
         "symfony/mailer": "6.2.*",
         "symfony/maker-bundle": "^1.48",
         "symfony/mime": "6.2.*",
-        "symfony/monolog-bundle": "^3.0",
+        "symfony/monolog-bundle": "^3.8",
         "symfony/notifier": "6.2.*",
         "symfony/process": "6.2.*",
         "symfony/property-access": "6.2.*",
@@ -53,6 +54,7 @@
             "symfony/flex": true,
             "symfony/runtime": true
         },
+        "optimize-autoloader": true,
         "sort-packages": true
     },
     "autoload": {

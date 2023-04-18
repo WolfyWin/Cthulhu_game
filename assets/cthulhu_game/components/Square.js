@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-function Square({ value, onClick, className }) {
+const Square = ({ value, onClick, className }) => {
   return (
     <button className={className} onClick={onClick}>
       {value}
