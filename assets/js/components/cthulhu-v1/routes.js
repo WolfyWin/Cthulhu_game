@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom'
 import {History}                              from './components/History'
 import {Game}                              from './components/Game'
-import React                                          from 'react'
+import React from 'react';
 
 const BoardGame = () => {
   return (
