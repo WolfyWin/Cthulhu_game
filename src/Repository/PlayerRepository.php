@@ -19,21 +19,25 @@ class PlayerRepository extends ServiceEntityRepository
         parent::__construct($registry, Player::class);
     }
 
-    public function save(Player $entity, bool $flush = false): void
+    public function getPlayerById(int $id): ?Player
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        return $this->findOneBy(['id' => $id]);
     }
 
-    public function delete(Player $entity, bool $flush = false): void
+    public function getAllPlayers(): array
     {
-        $this->getEntityManager()->remove($entity);
+        return $this->findAll();
+    }
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+    public function save(Player $player): void
+    {
+        $this->_em->persist($player);
+        $this->_em->flush();
+    }
+
+    public function delete(Player $player): void
+    {
+        $this->_em->remove($player);
+        $this->_em->flush();
     }
 }

@@ -25,7 +25,17 @@ class Player
     /**
      * @ORM\Column(type="integer")
      */
-    private ?int $score = null;
+    private ?int $gamesPlayed = null;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private ?int $gamesWon = null;
+
+    /**
+     * @ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true, options: ["default" => "CURRENT_TIMESTAMP"])
+     */
+    private ?\DateTimeInterface $lastPlayed = null;
 
     public function getId(): ?int
     {
@@ -40,20 +50,47 @@ class Player
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
-    public function getScore(): ?int
+    public function getGamesPlayed(): ?int
     {
-        return $this->score;
+        return $this->gamesPlayed;
     }
 
-    public function setScore(int $score): self
+    public function setGamesPlayed(int $gamesPlayed): self
     {
-        $this->score = $score;
+        $this->gamesPlayed = $gamesPlayed;
+
+        return $this;
+    }
+
+    public function getGamesWon(): ?int
+    {
+        return $this->gamesWon;
+    }
+
+    public function setGamesWon(int $gamesWon): self
+    {
+        $this->gamesWon = $gamesWon;
+
+        return $this;
+    }
+
+    public function getLastPlayed(): ?\DateTimeInterface
+    {
+        return $this->lastPlayed;
+    }
+
+    public function setLastPlayed(?\DateTimeInterface $lastPlayed): self
+    {
+        $this->lastPlayed = $lastPlayed;
+
         return $this;
     }
 }
+
 
 
 
