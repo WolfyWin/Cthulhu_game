@@ -2,51 +2,28 @@
 
 namespace App\Controller;
 
-use App\Manager\PlayerManager;
+use App\Entity\Player;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
-class PlayerController
+class PlayerController extends AbstractController
 {
-    /**
-     * @Route("/players", methods={"POST"})
-     */
-    public function createPlayer(Request $request, PlayerManager $playerManager): JsonResponse
-    {
-        $data = json_decode($request->getContent(), true);
+    private EntityManagerInterface $entityManager;
 
-        // récupérer le nom du joueur à partir des données de la requête
-        $name = $data['name'] ?? null;
-
-        // créer ou mettre à jour le joueur avec le PlayerManager
-        $player = $playerManager->createOrUpdatePlayer($name);
-
-        // retourner une réponse JSON avec les données du joueur créé ou mis à jour
-        return new JsonResponse([
-            'id' => $player->getId(),
-            'name' => $player->getName(),
-            'games_played' => $player->getGamesPlayed(),
-            'games_won' => $player->getGamesWon(),
-            'last_played' => $player->getLastPlayed()->format('Y-m-d H:i:s'),
-        ]);
+    public function __construct(EntityManagerInterface $entityManager){
+        $this->entityManager = $entityManager;
     }
 
-    /**
-     * @Route("/players/{id}", methods={"GET"})
-     */
-    public function getPlayer(int $id, PlayerManager $playerManager): JsonResponse
+    #[Route('/api/player/add', name: 'app_api_player_add')]
+    public function index(): JsonResponse
     {
-        // récupérer le joueur avec le PlayerManager
-        $player = $playerManager->getPlayer($id);
+        $addPlayer = new Player();
+        $addPlayer->setName($_POST['name']);
+        $this->entityManager->persist($addPlayer);
+        $this->entityManager->flush();
 
-        // retourner une réponse JSON avec les données du joueur
-        return new JsonResponse([
-            'id' => $player->getId(),
-            'name' => $player->getName(),
-            'games_played' => $player->getGamesPlayed(),
-            'games_won' => $player->getGamesWon(),
-            'last_played' => $player->getLastPlayed()->format('Y-m-d H:i:s'),
-        ]);
+        return new JsonResponse(['message' => 'Player added successfully']);
     }
 }

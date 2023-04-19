@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Repository\PlayerRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="players")
+ * @ORM\Entity(repositoryClass: PlayerRepository::class)
  */
 class Player
 {
@@ -83,15 +84,10 @@ class Player
         return $this->lastPlayed;
     }
 
-    public function setLastPlayed(?\DateTimeInterface $lastPlayed): self
+    public function setLastPlayed(\DateTimeInterface $lastPlayed): self
     {
         $this->lastPlayed = $lastPlayed;
 
         return $this;
     }
 }
-
-
-
-
-
