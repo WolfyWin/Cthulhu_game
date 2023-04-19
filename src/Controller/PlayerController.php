@@ -2,28 +2,30 @@
 
 namespace App\Controller;
 
-use App\Entity\Player;
+use App\Manager\PlayerManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 
 class PlayerController extends AbstractController
 {
-    private EntityManagerInterface $entityManager;
+    private PlayerManager $playerManager;
 
-    public function __construct(EntityManagerInterface $entityManager){
-        $this->entityManager = $entityManager;
+    public function __construct(PlayerManager $playerManager)
+    {
+        $this->playerManager = $playerManager;
     }
 
-    #[Route('/api/player/add', name: 'app_api_player_add')]
-    public function index(): JsonResponse
+    #[Route('/api/players', name: 'app_api_player_add', methods: ['POST'])]
+    public function add( Request $request ): JsonResponse
     {
-        $addPlayer = new Player();
-        $addPlayer->setName($_POST['name']);
-        $this->entityManager->persist($addPlayer);
-        $this->entityManager->flush();
+        foreach( $request->toArray() as $playerName )
+        {
+            $player = $this->playerManager->createOrUpdatePlayer( $playerName );
+            $this->playerManager->incrementGamesPlayed( $player );
+        }
 
-        return new JsonResponse(['message' => 'Player added successfully']);
+        return new JsonResponse(['message' => 'Players added successfully']);
     }
 }

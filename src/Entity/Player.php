@@ -3,47 +3,33 @@
 namespace App\Entity;
 
 use App\Repository\PlayerRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass: PlayerRepository::class)
- */
+#[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    #[ORM\Id, ORM\GeneratedValue]
+    private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $name = null;
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $name;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private ?int $gamesPlayed = null;
+    #[ORM\Column(type: 'integer')]
+    private int $gamesPlayed = 0;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private ?int $gamesWon = null;
+    #[ORM\Column(type: 'integer')]
+    private int $gamesWon = 0;
 
-    /**
-     * @ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true, options: ["default" => "CURRENT_TIMESTAMP"])
-     */
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeInterface $lastActivity = null;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -51,11 +37,10 @@ class Player
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
-    public function getGamesPlayed(): ?int
+    public function getGamesPlayed(): int
     {
         return $this->gamesPlayed;
     }
@@ -63,11 +48,10 @@ class Player
     public function setGamesPlayed(int $gamesPlayed): self
     {
         $this->gamesPlayed = $gamesPlayed;
-
         return $this;
     }
 
-    public function getGamesWon(): ?int
+    public function getGamesWon(): int
     {
         return $this->gamesWon;
     }
@@ -75,7 +59,6 @@ class Player
     public function setGamesWon(int $gamesWon): self
     {
         $this->gamesWon = $gamesWon;
-
         return $this;
     }
 
@@ -87,7 +70,6 @@ class Player
     public function setLastActivity(\DateTimeInterface $lastActivity): self
     {
         $this->lastActivity = $lastActivity;
-
         return $this;
     }
 }
