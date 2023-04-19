@@ -1,9 +1,11 @@
-import {ADD_HISTORY, CALCULATE_WINNER, JUMP_TO, MAKE_MOVE, UPDATE_SQUARE} from "../actions/actions";
-import {calculateWinner}                                                                     from "../actions/calculateWinner";
+import {ADD_HISTORY, ADD_PLAYERS, CALCULATE_WINNER, JUMP_TO, MAKE_MOVE, UPDATE_SQUARE} from "../actions/actions";
+import {calculateWinner}                                                               from "../actions/calculateWinner";
 
 const initialState = {
   xIsNext: true,
   winner: null,
+  player1: null,
+  player2: null,
   winningSquares: null,
   stepNumber: 0,
   history: [{ squares: Array(9).fill(null) }],
@@ -26,6 +28,18 @@ const gameReducer = (state = initialState, action) => {
       return {
         ...state,
         history: [...state.history, { squares: action.payload }]
+      };
+    case ADD_PLAYERS:
+      console.log(action.payload);
+      return {
+        ...state,
+        xIsNext: true,
+        winner: null,
+        winningSquares: null,
+        stepNumber: 0,
+        history: [{ squares: Array(9).fill(null) }],
+        player1: action.payload.player1,
+        player2: action.payload.player2
       };
     case MAKE_MOVE:
       const history = state.history.slice(0, state.stepNumber + 1);

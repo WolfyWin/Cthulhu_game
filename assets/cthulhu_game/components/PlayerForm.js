@@ -1,12 +1,24 @@
 import React, { useState } from 'react'
+import {useDispatch}       from "react-redux";
 
 const PlayerForm = () => {
 
+  const dispatch = useDispatch();
   const [player1, setPlayer1] = useState('');
   const [player2, setPlayer2] = useState('');
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    // trim player names
+    player1.trim();
+    player2.trim();
+
+    // check if the players have the same name
+    if( player1 === player2 ) {
+      alert('Les deux joueurs ne peuvent pas avoir le même nom !');
+      return;
+    }
 
     const response = await fetch('/api/players', {
       method: 'POST',
@@ -15,14 +27,25 @@ const PlayerForm = () => {
       },
       body: JSON.stringify({ player1, player2 }),
     });
-    console.log(response);
 
-    if (response.ok) {
-      console.log('Players saved successfully!');
-    } else {
+    if (response.ok)
+    {
+      // store the players in the state
+      dispatch( { type: 'ADD_PLAYERS', payload: { player1, player2 } })
+
+      // redirect to the game (react redirect doesn't work here)
+      document.location.href = '/#/play';
+    }
+    else
+    {
       console.error('Error saving players:', response.statusText);
     }
   };
+
+  // redirect to the home page if the user use directly the / url
+  if(!location.hash.startsWith('#/')) {
+    document.location.href = '/#/';
+  }
 
   return (
     <form onSubmit={handleFormSubmit}>
@@ -31,6 +54,7 @@ const PlayerForm = () => {
         <input
           type="text"
           value={player1}
+          required={true}
           onChange={(event) => setPlayer1(event.target.value)}
         />
       </label>
@@ -40,6 +64,7 @@ const PlayerForm = () => {
         <input
           type="text"
           value={player2}
+          required={true}
           onChange={(event) => setPlayer2(event.target.value)}
         />
       </label>

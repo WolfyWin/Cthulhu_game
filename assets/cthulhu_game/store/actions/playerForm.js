@@ -1,6 +1,6 @@
-import {ADD_PLAYER} from "./actions";
+import {ADD_PLAYERS} from "./actions";
 export const addPlayer = (player1, player2) => ({
-  type: ADD_PLAYER,
+  type: ADD_PLAYERS,
   payload: {
     player1,
     player2
