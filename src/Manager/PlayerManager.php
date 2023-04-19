@@ -24,7 +24,7 @@ class PlayerManager
             $player->setName($name);
         }
 
-        $player->setgetLastPlayed(new \DateTime());
+        $player->setgetLastActivity(new \DateTime());
 
         $this->entityManager->persist($player);
         $this->entityManager->flush();

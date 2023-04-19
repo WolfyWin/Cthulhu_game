@@ -36,7 +36,7 @@ class Player
     /**
      * @ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true, options: ["default" => "CURRENT_TIMESTAMP"])
      */
-    private ?\DateTimeInterface $lastPlayed = null;
+    private ?\DateTimeInterface $lastActivity = null;
 
     public function getId(): ?int
     {
@@ -79,14 +79,14 @@ class Player
         return $this;
     }
 
-    public function getLastPlayed(): ?\DateTimeInterface
+    public function getLastActivity(): ?\DateTimeInterface
     {
-        return $this->lastPlayed;
+        return $this->lastActivity;
     }
 
-    public function setLastPlayed(\DateTimeInterface $lastPlayed): self
+    public function setLastActivity(\DateTimeInterface $lastActivity): self
     {
-        $this->lastPlayed = $lastPlayed;
+        $this->lastActivity = $lastActivity;
 
         return $this;
     }

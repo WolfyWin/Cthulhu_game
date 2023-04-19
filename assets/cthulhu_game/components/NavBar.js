@@ -15,11 +15,6 @@ const NavBar = () => {
             Tableau des scores
           </Link>
         </li>
-        <li>
-          <Link className={"link"}  to="/history">
-            Historique des tours
-          </Link>
-        </li>
       </ul>
     </div>
   );

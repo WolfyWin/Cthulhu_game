@@ -1,5 +1,5 @@
 import {ADD_HISTORY, CALCULATE_WINNER, JUMP_TO, MAKE_MOVE, UPDATE_SQUARE} from "../actions/actions";
-import {calculateWinner}                                                  from "../actions/calculateWinner";
+import {calculateWinner}                                                                     from "../actions/calculateWinner";
 
 const initialState = {
   xIsNext: true,
