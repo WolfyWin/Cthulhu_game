@@ -82,7 +82,7 @@ const PlayerForm = () => {
           />
         </label>
         <br />
-        <button className="start-game-btn">START</button>
+        <button className="start-game-btn" type="submit">START</button>
       </form>
     </div>
   );

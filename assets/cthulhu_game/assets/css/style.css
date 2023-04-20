@@ -71,7 +71,7 @@ button:hover {
 }
 
 .game-info {
-  color: #b0ecb3;
+  color: #0a160d;
   text-shadow: 2px 2px 2px rgb(16, 18, 16);
   font-size: 1.5rem;
   order: 1;
@@ -198,33 +198,32 @@ label input {
   max-width: 800px;
 }
 
-table {
-  border-collapse: collapse;
+.scoreboard h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.scoreboard table {
   width: 100%;
+  border-collapse: collapse;
 }
 
-th, td {
-  padding: 8px;
+.scoreboard th,
+.scoreboard td {
+  padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  border-top: 1px solid #dee2e6;
 }
 
-th {
-  background-color: #f2f2f2;
-  color: #444;
+.scoreboard th {
   font-weight: bold;
+  background-color: #f8f9fa;
 }
 
-td:first-child {
-  font-weight: bold;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #ddd;
+.scoreboard tbody tr:nth-child(even) {
+  background-color: #0b492e;
 }
 /* ============@media================ */
 
