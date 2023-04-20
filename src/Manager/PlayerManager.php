@@ -14,6 +14,12 @@ class PlayerManager
         $this->entityManager = $entityManager;
     }
 
+    public function getAllPlayers(): array
+    {
+        $playerRepository = $this->entityManager->getRepository(Player::class);
+        return $playerRepository->findAll();
+    }
+
     public function createOrUpdatePlayer(string $name): Player
     {
         $playerRepository = $this->entityManager->getRepository(Player::class);
@@ -48,5 +54,10 @@ class PlayerManager
     {
         $playerRepository = $this->entityManager->getRepository(Player::class);
         return $playerRepository->find($id);
+    }
+    public function getPlayerByName(string $name)
+    {
+        $playerRepository = $this->entityManager->getRepository(Player::class);
+        return $playerRepository->findOneBy(['name' => $name]);
     }
 }
