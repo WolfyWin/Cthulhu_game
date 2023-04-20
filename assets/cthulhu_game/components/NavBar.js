@@ -7,7 +7,7 @@ const NavBar = () => {
       <ul>
         <li>
           <Link className={"link"} to="/">
-            Jeu
+            Nouvelle partie
           </Link>
         </li>
         <li>

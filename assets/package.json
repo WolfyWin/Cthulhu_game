@@ -49,7 +49,9 @@
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
+    "@jridgewell/sourcemap-codec": "^1.4.15",
     "@redux-devtools/core": "^3.13.1",
+    "@rollup/plugin-terser": "^0.4.1",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
     "eslint": "^8.38.0",
@@ -57,6 +59,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.2",
+    "svgo": "^3.0.2",
     "webpack": "^5.78.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.2"

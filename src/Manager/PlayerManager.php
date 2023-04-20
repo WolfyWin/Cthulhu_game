@@ -24,7 +24,7 @@ class PlayerManager
             $player->setName($name);
         }
 
-        $player->setgetLastActivity(new \DateTime());
+        $player->setLastActivity(new \DateTimeImmutable());
 
         $this->entityManager->persist($player);
         $this->entityManager->flush();
@@ -32,13 +32,13 @@ class PlayerManager
         return $player;
     }
 
-    public function gamesPlayed(Player $player): void
+    public function incrementGamesPlayed(Player $player): void
     {
         $player->setGamesPlayed($player->getGamesPlayed() + 1);
         $this->entityManager->flush();
     }
 
-    public function gamesWon(Player $player): void
+    public function incrementGamesWon(Player $player): void
     {
         $player->setGamesWon($player->getGamesWon() + 1);
         $this->entityManager->flush();
