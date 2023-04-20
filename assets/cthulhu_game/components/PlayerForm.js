@@ -48,29 +48,33 @@ const PlayerForm = () => {
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <label>
-        Player 1:
-        <input
-          type="text"
-          value={player1}
-          required={true}
-          onChange={(event) => setPlayer1(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Player 2:
-        <input
-          type="text"
-          value={player2}
-          required={true}
-          onChange={(event) => setPlayer2(event.target.value)}
-        />
-      </label>
-      <br />
-      <button>Start game</button>
-    </form>
+    <div className="player-form-container">
+      <form onSubmit={handleFormSubmit} className="player-form">
+        <label htmlFor="player1">
+          Joueur 1 :
+          <input
+            type="text"
+            id="player1"
+            value={player1}
+            required={true}
+            onChange={(event) => setPlayer1(event.target.value)}
+          />
+        </label>
+        <br />
+        <label htmlFor="player2">
+          Joueur 2 :
+          <input
+            type="text"
+            id="player2"
+            value={player2}
+            required={true}
+            onChange={(event) => setPlayer2(event.target.value)}
+          />
+        </label>
+        <br />
+        <button className="start-game-btn">START</button>
+      </form>
+    </div>
   );
 }
 

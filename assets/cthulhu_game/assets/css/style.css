@@ -139,6 +139,61 @@ button:hover {
   padding: 10px 30px;
 }
 
+/* ============Form================ */
+
+.player-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.player-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 30%;
+  list-style: none;
+  background: rgba(36, 44, 37, 0.5);
+  box-shadow: 2px 2px 2px rgb(16, 18, 16);
+  border-radius: 5px;
+}
+
+label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  display: block;
+  font-size: 1.2rem;
+  color: #dbffdd;
+}
+
+label input {
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  background-color: #405241;
+}
+
+.start-game-btn {
+  background-color: #0f7d14;
+  color: #023204;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.start-game-btn:hover {
+  background-color: #00ff0e;
+}
+
+/* ============@media================ */
+
 @media only screen and (max-width: 600px) {
   .game-board {
     max-width: 100%;
@@ -152,15 +207,4 @@ button:hover {
   }
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
+
