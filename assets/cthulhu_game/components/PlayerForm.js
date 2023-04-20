@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import {useDispatch}       from "react-redux";
+import {useDispatch}       from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const PlayerForm = () => {
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [player1, setPlayer1] = useState('');
   const [player2, setPlayer2] = useState('');
@@ -34,17 +35,16 @@ const PlayerForm = () => {
       dispatch( { type: 'ADD_PLAYERS', payload: { player1, player2 } })
 
       // redirect to the game (react redirect doesn't work here)
-      document.location.href = '/#/play';
+      navigate('/play');
     }
     else
     {
       console.error('Error saving players:', response.statusText);
     }
   };
-
   // redirect to the home page if the user use directly the / url
-  if(!location.hash.startsWith('#/')) {
-    document.location.href = '/#/';
+  if (!location.hash.startsWith('#/')) {
+    navigate('/');
   }
 
   return (
