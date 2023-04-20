@@ -1,4 +1,4 @@
-import {ADD_HISTORY, ADD_PLAYERS, CALCULATE_WINNER, JUMP_TO, MAKE_MOVE, UPDATE_SQUARE} from "../actions/actions";
+import {ADD_HISTORY, ADD_PLAYERS, CALCULATE_WINNER, JUMP_TO, MAKE_MOVE, UPDATE_SQUARE, ALL_PLAYERS} from "../actions/actions";
 import {calculateWinner}                                                               from "../actions/calculateWinner";
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
   winner: null,
   player1: null,
   player2: null,
+  allPlayers: null,
   winningSquares: null,
   stepNumber: 0,
   history: [{ squares: Array(9).fill(null) }],
@@ -13,6 +14,11 @@ const initialState = {
 
 const gameReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ALL_PLAYERS:
+      return {
+        ...state,
+        allPlayers: action.payload
+      };
     case UPDATE_SQUARE:
       return {
         ...state,
