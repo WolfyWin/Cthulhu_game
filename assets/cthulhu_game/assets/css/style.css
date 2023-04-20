@@ -192,6 +192,40 @@ label input {
   background-color: #00ff0e;
 }
 
+/* ============ScoreBoard================ */
+.scoreboard {
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #444;
+  font-weight: bold;
+}
+
+td:first-child {
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
 /* ============@media================ */
 
 @media only screen and (max-width: 600px) {

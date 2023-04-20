@@ -28,28 +28,20 @@ const Game = () => {
   const getStatus = () => {
     const winner = calculateWinner(squares).payload;
 
-    // TODO : Increment the number of games won for the player who won the game
-
-    if (winner)
-    {
+    if (winner) {
+      //Increment the number of games won for the player who won the game
+      fetch('/api/players/' + (winner.winner === 'X' ? player1 : player2) + '/victory', {
+        method: 'POST'
+      });
       return (winner.winner === 'X' ? player1 : player2) + ' a gagné !'
-    }
-    else if (stepNumber === 9)
-    {
+    } else if (stepNumber === 9) {
       return 'Match nul !';
-    }
-    else
-    {
+    } else {
       return `${xIsNext ? player1 : player2}, à vous de jouer.`;
     }
   };
 
   const restart = () => {
-    // TODO : if the game is not finished
-    //  - increase the number of games won for the player who hasn't abandoned his soul
-
-    // TODO : invert the players positions
-
     dispatch(jumpTo(0));
   };
 

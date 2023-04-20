@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import {useDispatch}       from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+import {useDispatch}                from 'react-redux'
+import { useNavigate} from 'react-router-dom'
 
 const PlayerForm = () => {
   const navigate = useNavigate();
@@ -34,7 +34,6 @@ const PlayerForm = () => {
       // store the players in the state
       dispatch( { type: 'ADD_PLAYERS', payload: { player1, player2 } })
 
-      // redirect to the game (react redirect doesn't work here)
       navigate('/play');
     }
     else
@@ -42,6 +41,17 @@ const PlayerForm = () => {
       console.error('Error saving players:', response.statusText);
     }
   };
+  // method to update state
+  const updateState = () => {
+    setPlayer1('');
+    setPlayer2('');
+  }
+
+  // call updateState method when component is mounted
+  useEffect(() => {
+    updateState();
+  }, [])
+
   // redirect to the home page if the user use directly the / url
   if (!location.hash.startsWith('#/')) {
     navigate('/');
