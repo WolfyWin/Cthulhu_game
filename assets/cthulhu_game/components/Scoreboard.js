@@ -7,30 +7,26 @@ import {TopThree} from './TopThree';
 const Scoreboard = () => {
   // Récupérer les données des joueurs depuis le store
   const dispatch = useDispatch();
-  const players = useSelector((state) => state.allPlayers);
+  const allPlayers = useSelector((state) => state.allPlayers);
 
   // Charger les données des joueurs depuis l'API
   useEffect(() => {
-    if (!players) {
+    // if ( allPlayers.length === 0 ) {
       fetch('/api/players')
         .then((response) => response.json())
         .then((data) => {
-          // sort players by number of victories except the 3 first
-
           data.sort((a, b) => b.gamesWon - a.gamesWon);
           dispatch({ type: 'ALL_PLAYERS', payload: data});
-
         });
-    }
-  }, [dispatch, players]);
+    // }
+  }, []);
 
   // Afficher le tableau des scores
   return (
     <div>
       <NavBar />
-      {players && <TopThree players={players} />}
+      {allPlayers && <TopThree players={allPlayers} />}
       <div className="scoreboard">
-        <h2>Tableau des scores</h2>
         <table>
           <thead>
           <tr>
@@ -41,7 +37,7 @@ const Scoreboard = () => {
           </tr>
           </thead>
           <tbody>
-          <ResultScore players={players} />
+          <ResultScore players={allPlayers} />
           </tbody>
         </table>
       </div>

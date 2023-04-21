@@ -6,14 +6,23 @@ const TopThree = ({ players }) => {
 
   return (
     <div className="top-three">
-      <h3>Top 3</h3>
-      <ol>
-        {topThreePlayers.map((player) => (
+      <ul>
+        {topThreePlayers.map((player, index) => (
           <li key={player.id}>
-            <strong>{player.name}</strong> - {player.gamesWon} parties gagnées
+            <div className="podium">
+              {index === 0 && <img src="images/first.png" alt="first-place"  className="first-place" />}
+              {index === 1 && <img src="images/second.png" alt="second-place" className="second-place" />}
+              {index === 2 && <img src="images/third.png" alt="third-place" className="third-place" />}
+            </div>
+            <div className="name-winner">
+              <strong>{player.name}</strong>
+            </div>
+            <div className="number-games">
+              {player.gamesWon} parties gagnées
+            </div>
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   );
 };
