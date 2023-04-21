@@ -41,7 +41,19 @@ const Game = () => {
     }
   };
 
-  const restart = () => {
+  const restart = async() => {
+    // Reset the number of games played for both players
+    await fetch('/api/players', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "player1": player1,
+        "player2": player2
+      }),
+    });
+
     dispatch(jumpTo(0));
   };
 
