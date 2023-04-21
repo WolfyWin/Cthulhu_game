@@ -27,7 +27,6 @@ const Scoreboard = () => {
       <NavBar />
       {allPlayers && <TopThree players={allPlayers} />}
       <div className="scoreboard">
-        <h2>Tableau des scores</h2>
         <table>
           <thead>
           <tr>

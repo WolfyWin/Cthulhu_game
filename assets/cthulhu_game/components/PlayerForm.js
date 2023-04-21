@@ -91,7 +91,7 @@ const PlayerForm = () => {
             {isNewPlayer1 ? (
               <input type="text" value={player1} onChange={(event) => setPlayer1(event.target.value)} />
             ) : (
-              <select value={player1} onChange={handlePlayer1Change}>
+              <select className="player" value={player1} onChange={handlePlayer1Change}>
                 <option value="">-- Sélectionnez un joueur --</option>
                 {players.map((player) => (
                   <option key={player.id} value={player.name}>
@@ -108,7 +108,7 @@ const PlayerForm = () => {
           {isNewPlayer2 ? (
             <input type="text" value={player2} onChange={(event) => setPlayer2(event.target.value)} />
           ) : (
-            <select value={player2} onChange={handlePlayer2Change}>
+            <select className="player" value={player2} onChange={handlePlayer2Change}>
               <option value="">-- Sélectionnez un joueur --</option>
               {players.map((player) => (
                 <option key={player.id} value={player.name}>

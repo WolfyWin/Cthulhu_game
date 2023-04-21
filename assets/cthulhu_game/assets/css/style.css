@@ -3,7 +3,7 @@
 body {
   font-family: 'Cinzel', serif;
   text-align: center;
-  background-image: url(../images/6.png);
+  background-image: url(../images/6.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -71,7 +71,7 @@ button:hover {
 }
 
 .game-info {
-  color: #0a160d;
+  color: #afeab2;
   text-shadow: 2px 2px 2px rgb(16, 18, 16);
   font-size: 1.5rem;
   order: 1;
@@ -137,6 +137,7 @@ button:hover {
   box-shadow: 2px 2px 2px rgb(16, 18, 16);
   border-radius: 5px;
   padding: 10px 30px;
+  font-weight: bold;
 }
 
 /* ============Form================ */
@@ -176,7 +177,16 @@ label input {
   margin-bottom: 10px;
   background-color: #405241;
 }
-
+/* ====================== */
+select.player {
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border-color: #405241;
+  background-color: #405241;
+  color: #e0ffe2;
+}
 .start-game-btn {
   background-color: #0f7d14;
   color: #023204;
@@ -212,18 +222,94 @@ label input {
 .scoreboard th,
 .scoreboard td {
   padding: 12px;
-  text-align: left;
+  text-align: center;
   vertical-align: middle;
-  border-top: 1px solid #dee2e6;
+}
+
+.scoreboard tr {
+  background-color: rgba(36, 41, 36, 0.72);
+}
+.scoreboard thead {
+  color: #01cb8bd1;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 5px 5px 5px #000000;
 }
 
 .scoreboard th {
   font-weight: bold;
-  background-color: #f8f9fa;
 }
 
 .scoreboard tbody tr:nth-child(even) {
-  background-color: #0b492e;
+  background-color: #0aab7899;
+  color: #ffffff;
+}
+.scoreboard tbody tr:nth-child(odd) {
+  color: #83d9d0;
+  text-shadow: 5px 5px 5px #000000;
+}
+.scoreboard tbody td{
+  font-size: 1.2rem;
+}
+.scoreboard thead {
+  background-image: url("/public/images/rock.jpg");
+  background-size: cover;
+}
+/* ============podium================ */
+.top-three {
+  display: flex;
+  justify-content: center;
+}
+.top-three ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  background: rgba(36, 44, 37, 0.5);
+  box-shadow: 2px 2px 2px rgb(16, 18, 16);
+  border-radius: 5px;
+  padding: 10px 30px;
+}
+
+.top-three li {
+  margin-left: 30px;
+  margin-right: 30px;
+  color: #dbffdd;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.first-place {
+  width: 300px;
+  height: 300px;
+}
+
+.second-place {
+  width: 300px;
+  height: 300px;
+}
+
+.third-place {
+  width: 300px;
+  height: 300px;
+}
+
+.name-winner {
+  background-image: url("/public/images/rock.jpg");
+  background-size: cover;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px #000000;
+  color: #50e1d4;
+}
+
+.number-games {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #50e1d4;
+  text-shadow: 2px 2px 2px #000000;
+  margin: 1rem;
 }
 /* ============@media================ */
 
