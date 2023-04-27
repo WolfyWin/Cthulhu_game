@@ -8,8 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
 {
-    #[ORM\Column(type: 'integer')]
-    #[ORM\Id, ORM\GeneratedValue]
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]

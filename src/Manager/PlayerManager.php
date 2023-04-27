@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class PlayerManager
 {
+    private const NAME_FIELD = 'name';
+
     private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
@@ -23,7 +25,7 @@ class PlayerManager
     public function createOrUpdatePlayer(string $name): Player
     {
         $playerRepository = $this->entityManager->getRepository(Player::class);
-        $player = $playerRepository->findOneBy(['name' => $name]);
+        $player = $playerRepository->findOneBy([self::NAME_FIELD => $name]);
 
         if (!$player) {
             $player = new Player();
@@ -32,8 +34,7 @@ class PlayerManager
 
         $player->setLastActivity(new \DateTimeImmutable());
 
-        $this->entityManager->persist($player);
-        $this->entityManager->flush();
+        $this->updatePlayer($player);
 
         return $player;
     }
@@ -41,23 +42,30 @@ class PlayerManager
     public function incrementGamesPlayed(Player $player): void
     {
         $player->setGamesPlayed($player->getGamesPlayed() + 1);
-        $this->entityManager->flush();
+        $this->updatePlayer($player);
     }
 
     public function incrementGamesWon(Player $player): void
     {
         $player->setGamesWon($player->getGamesWon() + 1);
-        $this->entityManager->flush();
+        $this->updatePlayer($player);
     }
 
-    public function getPlayer(int $id)
+    public function getPlayer(int $id): ?Player
     {
         $playerRepository = $this->entityManager->getRepository(Player::class);
         return $playerRepository->find($id);
     }
-    public function getPlayerByName(string $name)
+
+    public function getPlayerByName(string $name): ?Player
     {
         $playerRepository = $this->entityManager->getRepository(Player::class);
-        return $playerRepository->findOneBy(['name' => $name]);
+        return $playerRepository->findOneBy([self::NAME_FIELD => $name]);
+    }
+
+    private function updatePlayer(Player $player): void
+    {
+        $this->entityManager->persist($player);
+        $this->entityManager->flush();
     }
 }
