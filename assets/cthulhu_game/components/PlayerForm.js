@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch} from  'react-redux'
 import { useNavigate} from 'react-router-dom'
+import {PlayerSelector} from '../store/selectors/PlayerSelector'
+
+const ALERT_MESSAGES = {
+  TWO_PLAYERS_REQUIRED: "Vous devez sélectionner deux joueurs !",
+  SAME_PLAYERS: "Les deux joueurs ne peuvent pas être les mêmes !",
+  PLAYER_ALREADY_EXISTS: "Ces noms de joueurs existent déjà, veuillez en choisir d'autres."
+};
 
 const PlayerForm = () => {
   const navigate = useNavigate();
@@ -11,7 +18,6 @@ const PlayerForm = () => {
   const [isNewPlayer1, setIsNewPlayer1] = useState(false);
   const [isNewPlayer2, setIsNewPlayer2] = useState(false);
 
-  // On récupère la liste des joueurs
   useEffect(() => {
     const fetchPlayers = async () => {
       const response = await fetch('/api/players');
@@ -22,27 +28,27 @@ const PlayerForm = () => {
     fetchPlayers();
   }, []);
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async event => {
     event.preventDefault();
 
     // On vérifie que les deux joueurs ont bien été renseignés
-    if ( player1 === "" || player2 === "" ) {
-      alert("Vous devez sélectionner deux joueurs !");
+    if (player1 === '' || player2 === '') {
+      alert(ALERT_MESSAGES.TWO_PLAYERS_REQUIRED);
       return;
     }
 
     // On vérifie que les deux joueurs ne sont pas les mêmes
     if (player1 === player2) {
-      alert("Les deux joueurs ne peuvent pas être les mêmes !");
+      alert(ALERT_MESSAGES.SAME_PLAYERS);
       return;
     }
 
     // On vérifie que les nouveaux joueurs n'existent pas déjà en base de données
     if (
-      (isNewPlayer1 && players.some((p) => p.name === player1)) ||
-      (isNewPlayer2 && players.some((p) => p.name === player2))
+      (isNewPlayer1 && players.some(p => p.name === player1)) ||
+      (isNewPlayer2 && players.some(p => p.name === player2))
     ) {
-      alert('Ces noms de joueurs existent déjà, veuillez en choisir d\'autres.');
+      alert(ALERT_MESSAGES.PLAYER_ALREADY_EXISTS);
       return;
     }
 
@@ -63,62 +69,26 @@ const PlayerForm = () => {
     navigate('/play');
   };
 
-  const handlePlayer1Change = (event) => {
-    if (event.target.value === 'new') {
-      setIsNewPlayer1(true);
-      setPlayer1('');
-    } else {
-      setIsNewPlayer1(false);
-      setPlayer1(event.target.value);
-    }
-  };
-
-  const handlePlayer2Change = (event) => {
-    if (event.target.value === 'new') {
-      setIsNewPlayer2(true);
-      setPlayer2('');
-    } else {
-      setIsNewPlayer2(false);
-      setPlayer2(event.target.value);
-    }
-  };
-
   return (
     <div className="player-form-container">
       <form onSubmit={handleFormSubmit} className="player-form">
-          <label htmlFor="player1">
-            Joueur 1
-            {isNewPlayer1 ? (
-              <input type="text" value={player1} onChange={(event) => setPlayer1(event.target.value)} />
-            ) : (
-              <select className="player" value={player1} onChange={handlePlayer1Change}>
-                <option value="">-- Sélectionnez un joueur --</option>
-                {players.map((player) => (
-                  <option key={player.id} value={player.name}>
-                    {player.name}
-                  </option>
-                ))}
-                <option value="new">Nouveau joueur</option>
-              </select>
-            )}
-          </label>
+        <PlayerSelector
+          label="Joueur 1"
+          value={player1}
+          onChange={setPlayer1}
+          isNewPlayer={isNewPlayer1}
+          onNewPlayerChange={() => setIsNewPlayer1(true)}
+          players={players}
+        />
         <br />
-        <label htmlFor="player2">
-          Joueur 2
-          {isNewPlayer2 ? (
-            <input type="text" value={player2} onChange={(event) => setPlayer2(event.target.value)} />
-          ) : (
-            <select className="player" value={player2} onChange={handlePlayer2Change}>
-              <option value="">-- Sélectionnez un joueur --</option>
-              {players.map((player) => (
-                <option key={player.id} value={player.name}>
-                  {player.name}
-                </option>
-              ))}
-              <option value="new">Nouveau joueur</option>
-            </select>
-          )}
-        </label>
+        <PlayerSelector
+          label="Joueur 2"
+          value={player2}
+          onChange={setPlayer2}
+          isNewPlayer={isNewPlayer2}
+          onNewPlayerChange={() => setIsNewPlayer2(true)}
+          players={players}
+        />
         <button className="start-game-btn" type="submit">START</button>
       </form>
     </div>

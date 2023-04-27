@@ -1,27 +1,25 @@
-import {NavBar} from './NavBar';
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {ResultScore} from './ResultScore';
-import {TopThree} from './TopThree';
+import {NavBar} from './NavBar'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {ResultScore} from './ResultScore'
+import {TopThree} from './TopThree'
 
 const Scoreboard = () => {
-  // Récupérer les données des joueurs depuis le store
   const dispatch = useDispatch();
   const allPlayers = useSelector((state) => state.allPlayers);
 
-  // Charger les données des joueurs depuis l'API
   useEffect(() => {
-    // if ( allPlayers.length === 0 ) {
-      fetch('/api/players')
-        .then((response) => response.json())
-        .then((data) => {
-          data.sort((a, b) => b.gamesWon - a.gamesWon);
-          dispatch({ type: 'ALL_PLAYERS', payload: data});
-        });
-    // }
+    const fetchPlayers = async () => {
+      const response = await fetch('/api/players');
+      const data = await response.json();
+      dispatch({type: 'ALL_PLAYERS', payload: data.sort((a, b) => b.gamesWon - a.gamesWon)});
+    }
+
+    if (!allPlayers?.length) {
+      fetchPlayers();
+    }
   }, []);
 
-  // Afficher le tableau des scores
   return (
     <div>
       <NavBar />
@@ -37,7 +35,7 @@ const Scoreboard = () => {
           </tr>
           </thead>
           <tbody>
-          <ResultScore players={allPlayers} />
+          {allPlayers && <ResultScore players={allPlayers} />}
           </tbody>
         </table>
       </div>

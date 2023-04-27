@@ -5,3 +5,4 @@ export const ADD_HISTORY = 'ADD_HISTORY';
 export const MAKE_MOVE = 'MAKE_MOVE';
 export const ADD_PLAYERS = 'ADD_PLAYERS';
 export const ALL_PLAYERS = 'ALL_PLAYERS';
+

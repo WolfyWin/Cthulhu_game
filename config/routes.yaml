@@ -1,3 +1,8 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+index:
+    path: /
+    controller: App\Controller\GameController::index
+    methods: GET

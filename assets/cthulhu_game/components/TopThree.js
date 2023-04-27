@@ -1,7 +1,14 @@
 import React from 'react';
 
 const TopThree = ({ players }) => {
-  // Trier les joueurs en fonction du nombre de parties gagnées et afficher les trois premiers
+  const firstPlaceImg = 'images/first.png';
+  const secondPlaceImg = 'images/second.png';
+  const thirdPlaceImg = 'images/third.png';
+
+  if (!players || players.length === 0) {
+    return <div>Aucun joueur trouvé</div>;
+  }
+
   const topThreePlayers = players.sort((a, b) => b.gamesWon - a.gamesWon).slice(0, 3);
 
   return (
@@ -10,9 +17,13 @@ const TopThree = ({ players }) => {
         {topThreePlayers.map((player, index) => (
           <li key={player.id}>
             <div className="podium">
-              {index === 0 && <img src="images/first.png" alt="first-place"  className="first-place" />}
-              {index === 1 && <img src="images/second.png" alt="second-place" className="second-place" />}
-              {index === 2 && <img src="images/third.png" alt="third-place" className="third-place" />}
+              {index === 0 ? (
+                <img src={firstPlaceImg} alt="first-place" className="first-place" />
+              ) : index === 1 ? (
+                <img src={secondPlaceImg} alt="second-place" className="second-place" />
+              ) : (
+                <img src={thirdPlaceImg} alt="third-place" className="third-place" />
+              )}
             </div>
             <div className="name-winner">
               <strong>{player.name}</strong>
@@ -27,4 +38,5 @@ const TopThree = ({ players }) => {
   );
 };
 
-export {TopThree};
+export { TopThree };
+

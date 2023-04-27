@@ -1,5 +1,4 @@
-import {CALCULATE_WINNER} from "./actions";
-
+import {CALCULATE_WINNER} from './actions'
 export const calculateWinner = (squares) => {
   /* les différentes combinaisons gagnantes */
   const lines = [
@@ -30,6 +29,6 @@ export const calculateWinner = (squares) => {
   /* si aucune combinaison n'est gagnante, on retourne null */
   return {
     type: CALCULATE_WINNER,
-    payload: null
+    payload: null,
   };
 };

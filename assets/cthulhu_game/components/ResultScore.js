@@ -1,6 +1,5 @@
 import React from 'react'
 
-// Fonction pour afficher le corps du tableau
 const ResultScore = ({ players }) => {
   if (!players) {
     return (
@@ -8,31 +7,30 @@ const ResultScore = ({ players }) => {
         <td colSpan="4">Chargement...</td>
       </tr>
     );
-  } else if (players.length === 0) {
+  }
+
+  if (players.length === 0) {
     return (
       <tr>
         <td colSpan="4">Aucun joueur trouvé !</td>
       </tr>
     );
-  } else {
-    return players.map((player) => {
-      const lastActivityDate = new Date(
-        player.lastActivity.timestamp * 1000
-      ).toLocaleDateString('fr');
-      const lastActivityTime = new Date(
-        player.lastActivity.timestamp * 1000
-      ).toLocaleTimeString('fr');
-      return (
-        <tr key={player.id}>
-          <td>{player.name}</td>
-          <td>{player.gamesPlayed}</td>
-          <td>{player.gamesWon}</td>
-          <td>
-            {lastActivityDate} à {lastActivityTime}
-          </td>
-        </tr>
-      );
-    });
   }
+
+  return players.map(({ id, name, gamesPlayed, gamesWon, lastActivity }) => {
+    const { timestamp } = lastActivity;
+    const lastActivityDate = new Date(timestamp * 1000).toLocaleDateString('fr');
+    const lastActivityTime = new Date(timestamp * 1000).toLocaleTimeString('fr');
+
+    return (
+      <tr key={id}>
+        <td>{name}</td>
+        <td>{gamesPlayed}</td>
+        <td>{gamesWon}</td>
+        <td>{`${lastActivityDate} à ${lastActivityTime}`}</td>
+      </tr>
+    );
+  });
 };
+
 export { ResultScore };
