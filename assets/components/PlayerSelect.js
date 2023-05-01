@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PlayerSelector({ label, value, onChange, isNewPlayer, onNewPlayerChange, players })
+function PlayerSelect({ label, value, onChange, isNewPlayer, onNewPlayerChange, players })
 {
   const handlePlayerChange = (event) => {
     const { value } = event.target;
@@ -31,4 +31,4 @@ function PlayerSelector({ label, value, onChange, isNewPlayer, onNewPlayerChange
   );
 }
 
-export { PlayerSelector };
+export { PlayerSelect };

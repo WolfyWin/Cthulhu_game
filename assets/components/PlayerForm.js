@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch} from  'react-redux'
 import { useNavigate} from 'react-router-dom'
-import {PlayerSelector} from '../store/selectors/PlayerSelector'
+import {PlayerSelect} from './PlayerSelect'
 
 const ALERT_MESSAGES = {
   TWO_PLAYERS_REQUIRED: "Vous devez sélectionner deux joueurs !",
@@ -31,19 +31,16 @@ const PlayerForm = () => {
   const handleFormSubmit = async event => {
     event.preventDefault();
 
-    // On vérifie que les deux joueurs ont bien été renseignés
     if (player1 === '' || player2 === '') {
       alert(ALERT_MESSAGES.TWO_PLAYERS_REQUIRED);
       return;
     }
 
-    // On vérifie que les deux joueurs ne sont pas les mêmes
     if (player1 === player2) {
       alert(ALERT_MESSAGES.SAME_PLAYERS);
       return;
     }
 
-    // On vérifie que les nouveaux joueurs n'existent pas déjà en base de données
     if (
       (isNewPlayer1 && players.some(p => p.name === player1)) ||
       (isNewPlayer2 && players.some(p => p.name === player2))
@@ -52,7 +49,6 @@ const PlayerForm = () => {
       return;
     }
 
-    // On enregistre les nouveaux joueurs s'ils existent
     await fetch('/api/players', {
       method: 'POST',
       headers: {
@@ -64,7 +60,6 @@ const PlayerForm = () => {
       }),
     });
 
-    // On envoie les informations des joueurs sélectionnés au store Redux et on redirige vers le jeu
     dispatch({ type: 'ADD_PLAYERS', payload: { player1, player2 } });
     navigate('/play');
   };
@@ -72,7 +67,7 @@ const PlayerForm = () => {
   return (
     <div className="player-form-container">
       <form onSubmit={handleFormSubmit} className="player-form">
-        <PlayerSelector
+        <PlayerSelect
           label="Joueur 1"
           value={player1}
           onChange={setPlayer1}
@@ -81,7 +76,7 @@ const PlayerForm = () => {
           players={players}
         />
         <br />
-        <PlayerSelector
+        <PlayerSelect
           label="Joueur 2"
           value={player2}
           onChange={setPlayer2}
