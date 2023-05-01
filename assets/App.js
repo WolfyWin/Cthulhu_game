@@ -7,7 +7,7 @@ import {Game} from './components/Game'
 import {PlayerForm} from './components/PlayerForm'
 import {Scoreboard} from './components/Scoreboard'
 
-import './assets/css/style.css'
+import './css/style.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
