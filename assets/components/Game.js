@@ -48,27 +48,25 @@ const Game = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ player1, player2 }),
-    });
+    })
 
-    dispatch(jumpTo(0));
-  };
+    dispatch(jumpTo(0))
+  }
 
-  const status = getStatus();
+  const status = getStatus()
 
   return (
     <>
       <NavBar />
-      <div className="game">
-        <div className="game-board">
+        <div className="grid text-center game">
+          <div className="g-col-6 game-info mb-5">
+              {status}
+            <button onClick={restart}>Abandonner son âme</button>
+          </div>
           <Board squares={squares} onClick={handleClick} />
         </div>
-        <div className="game-info">
-          {status}
-          <button onClick={restart}>Abandonner son âme</button>
-        </div>
-      </div>
     </>
-  );
-};
+  )
+}
 
-export { Game };
+export { Game }

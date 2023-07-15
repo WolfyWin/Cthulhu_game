@@ -11,6 +11,6 @@ class GameController extends AbstractController
     #[Route('/', name: 'CthulhuGame', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->render('index.html.twig');
+        return $this->render('base.html.twig');
     }
 }

@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
 const TopThree = ({ players }) => {
-  const firstPlaceImg = 'images/first.png';
-  const secondPlaceImg = 'images/second.png';
-  const thirdPlaceImg = 'images/third.png';
+  const firstPlaceImg = 'images/first.png'
+  const secondPlaceImg = 'images/second.png'
+  const thirdPlaceImg = 'images/third.png'
 
   if (!players || players.length === 0) {
-    return <div>Aucun joueur trouvé</div>;
+    return <div>Aucun joueur trouvé</div>
   }
 
-  const topThreePlayers = players.sort((a, b) => b.gamesWon - a.gamesWon).slice(0, 3);
+  const topThreePlayers = players.sort((a, b) => b.gamesWon - a.gamesWon).slice(0, 3)
 
   return (
     <div className="top-three">
@@ -28,15 +28,12 @@ const TopThree = ({ players }) => {
             <div className="name-winner">
               <strong>{player.name}</strong>
             </div>
-            <div className="number-games">
-              {player.gamesWon} parties gagnées
-            </div>
           </li>
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export { TopThree };
+export { TopThree }
 

@@ -20,7 +20,7 @@ export class Board extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="g-col-6 game-board">
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}

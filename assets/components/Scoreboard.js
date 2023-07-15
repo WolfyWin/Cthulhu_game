@@ -25,22 +25,14 @@ const Scoreboard = () => {
       <NavBar />
       {allPlayers && <TopThree players={allPlayers} />}
       <div className="scoreboard">
-        <table>
-          <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Parties jouées</th>
-            <th>Parties gagnées</th>
-            <th>Dernière activité</th>
-          </tr>
-          </thead>
-          <tbody>
-          {allPlayers && <ResultScore players={allPlayers} />}
-          </tbody>
-        </table>
+        <div className="scoreboard">
+          <div className="card-container">
+            {allPlayers && <ResultScore players={allPlayers} />}
+          </div>
+        </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export { Scoreboard };

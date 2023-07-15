@@ -8,67 +8,73 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
 {
-    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
-    private int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $name;
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
 
-    #[ORM\Column(type: 'integer')]
-    private int $gamesPlayed = 0;
+    #[ORM\Column(nullable: true)]
+    private ?int $games_won = null;
 
-    #[ORM\Column(type: 'integer')]
-    private int $gamesWon = 0;
+    #[ORM\Column(nullable: true)]
+    private ?int $games_played = null;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private ?\DateTimeInterface $lastActivity = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $last_activity = null;
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
-    public function getGamesPlayed(): int
+    public function getGamesWon(): ?int
     {
-        return $this->gamesPlayed;
+        return $this->games_won;
     }
 
-    public function setGamesPlayed(int $gamesPlayed): self
+    public function setGamesWon(int $games_won): static
     {
-        $this->gamesPlayed = $gamesPlayed;
+        $this->games_won = $games_won;
+
         return $this;
     }
 
-    public function getGamesWon(): int
+    public function getGamesPlayed(): ?int
     {
-        return $this->gamesWon;
+        return $this->games_played;
     }
 
-    public function setGamesWon(int $gamesWon): self
+    public function setGamesPlayed(int $games_played): static
     {
-        $this->gamesWon = $gamesWon;
+        $this->games_played = $games_played;
+
         return $this;
     }
 
-    public function getLastActivity(): ?\DateTimeInterface
+    public function getLastActivity(): ?\DateTimeImmutable
     {
-        return $this->lastActivity;
+        return $this->last_activity;
     }
 
-    public function setLastActivity(\DateTimeInterface $lastActivity): self
+    public function setLastActivity(?\DateTimeImmutable $last_activity): static
     {
-        $this->lastActivity = $lastActivity;
+        $this->last_activity = $last_activity;
+
         return $this;
     }
 }

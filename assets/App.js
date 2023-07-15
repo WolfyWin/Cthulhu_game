@@ -7,6 +7,7 @@ import {Game} from './components/Game'
 import {PlayerForm} from './components/PlayerForm'
 import {Scoreboard} from './components/Scoreboard'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/style.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -19,4 +20,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Routes>
       </HashRouter>
   </Provider>
-);
+)
