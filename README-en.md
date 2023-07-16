@@ -4,6 +4,8 @@
 This game was initially made in REACT with [Create React App](https://github.com/facebook/create-react-app).
 It was then improved with redux and integrated into symphony.
 
+Link to website [here](https://cthulhu-game.wolfyweb.fr)
+
 ![EN](https://user-images.githubusercontent.com/58392030/233780837-e25b245a-433e-449d-9991-241683544e5b.png)
 ## Installation
 
