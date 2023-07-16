@@ -19,7 +19,7 @@ function PlayerSelect({ label, value, onChange, isNewPlayer, onNewPlayerChange, 
           <input type="text" value={value} onChange={(event) => onChange(event.target.value)} className="form-control"/>
         ) : (
           <select className="form-control player" value={value} onChange={handlePlayerChange}>
-            <option value="">-- Sélectionnez un joueur --</option>
+            <option value="">Sélectionnez un joueur</option>
             {players.map((player) => (
               <option key={player.id} value={player.name}>
                 {player.name}

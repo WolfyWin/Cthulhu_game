@@ -26,6 +26,7 @@ h1 {
   color: rgb(94, 131, 96);
   text-shadow: 2px 2px 2px rgb(16, 18, 16);
 }
+
 .link {
   display: block;
   color: #b0ecb3;
@@ -39,6 +40,7 @@ button:hover {
   background-color: rgb(31, 69, 36, 0.64);
   color: #ddf1de;
 }
+
 /* ============navBar================ */
 
 .backdrop {
@@ -183,6 +185,13 @@ button:hover {
   transition: all 0.2s ease-in-out;
 }
 
+.game-info button:hover {
+  background-color: rgb(31, 69, 36, 0.64);
+  color: #ddf1de;
+  border: 1px solid #00ff0e;
+  transform: scale(1.05);
+}
+
 .game-board {
   border-radius: 5px;
 }
@@ -224,6 +233,7 @@ button:hover {
 
 .winning-square {
   background: rgba(34, 255, 0, 0.52);
+  border: 1px solid #00ff0e;
   color: white;
   transition: all 0.2s ease-in-out;
 }
@@ -272,17 +282,23 @@ select.player {
   color: #e0ffe2;
 }
 .start-game-btn {
-  background-color: #0f7d14;
-  color: #023204;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
   padding: 10px 20px;
-  font-size: 1.3rem;
+  font-size: 15px;
+  font-weight: bold;
+  color: #8bb88e;
+  background: rgb(1, 24, 14);
+  border: 1px solid rgb(56, 73, 57);
+  border-radius: 5px;
+  margin: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .start-game-btn:hover {
-  background-color: #00ff0e;
+  background-color: rgb(31, 69, 36, 0.64);
+  color: #ddf1de;
+  border: 1px solid #00ff0e;
+  transform: scale(1.05);
 }
 
 /* ============ScoreBoard================ */
